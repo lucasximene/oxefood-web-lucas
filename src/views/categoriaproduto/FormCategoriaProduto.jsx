@@ -6,64 +6,56 @@ import MenuSistema from '../../MenuSistema';
 import { Link, useLocation } from "react-router-dom";
 
 export default function FormCategoriaProduto() {
+
     const { state } = useLocation();
-    const [idCategoria, setIdCategoria] = useState();
+    const [idCategoriaProduto, setIdCategoriaProduto] = useState();
+    const [descricaoCategoria, setDescricaoCategoria] = useState();
+
 
     useEffect(() => {
         if (state != null && state.id != null) {
-            axios.get("http://localhost:8082/api/categoriaproduto/" + state.id)
+            axios.get("http://localhost:8081/api/categoriaproduto/" + state.id)
                 .then((response) => {
-                    setIdCategoria(response.data.categoria.id)
+                    setIdCategoriaProduto(response.data.id)
+                    setDescricaoCategoria(response.data.descricaoCategoria)
                 })
         }
-        axios.get(ENDERECO_API + "api/categoriaproduto")
-        .then((response) => {
-            const dropDownCategorias = response.data.map(c => ({ text: categoria.descricao, value: categoria.id }));
-            setListaCategoria(dropDownCategorias);
-        })
- 
     }, [state])
 
-    const [listaCategoria, setListaCategoria] = useState([]);
-
- 
     function salvar() {
 
-        let categoriaprodutoRequest = {
-            idCategoria: idCategoria,
-            categoria: categoria
-
+        let categoriaProdutoRequest = {
+            descricaoCategoria: descricaoCategoria,
         }
-        if (idProduto != null) { //Alteração:
-            axios.put("http://localhost:8082/api/categoriaproduto/" + idCategoria, categoriaRequest)
-                .then((response) => { console.log('Categoria de Produto alterado com sucesso.') })
-                .catch((error) => { console.log('Erro ao alterar uma Categoria de Produto.') })
+
+        if (idCategoriaProduto != null) { //Alteração:
+            axios.put("http://localhost:8081/api/categoriaproduto/" + idCategoriaProduto, categoriaProdutoRequest)
+                .then((response) => { console.log('Categoria de produto alterado com sucesso.') })
+                .catch((error) => { console.log('Erro ao alterar uma categoria de produto.') })
         } else { //Cadastro:
-            axios.post("http://localhost:8082/api/categoriaproduto", categoriaprodutoRequest)
-                .then((response) => { console.log('Categoria de Produto cadastrado com sucesso.') })
-                .catch((error) => { console.log('Erro ao incluir a Categoria de Produto.') })
+            axios.post("http://localhost:8081/api/categoriaproduto", categoriaProdutoRequest)
+                .then((response) => { console.log('Categoria de produto cadastrado com sucesso.') })
+                .catch((error) => { console.log('Erro ao incluir a categoria de produto.') })
         }
     }
-
-
 
     return (
 
         <div>
 
-            <MenuSistema tela={'categoria'} />
+            <MenuSistema tela={'categoriaproduto'} />
+
 
             <div style={{ marginTop: '3%' }}>
 
                 <Container textAlign='justified' >
 
-                    {idCategoria === undefined &&
-                        <h2> <span style={{ color: 'darkgray' }}> Categoria &nbsp;<Icon name='angle double right' size="small" /> </span> Cadastro</h2>
+                    {idCategoriaProduto === undefined &&
+                        <h2> <span style={{ color: 'darkgray' }}> Categoria de Produto &nbsp;<Icon name='angle double right' size="small" /> </span> Cadastro</h2>
                     }
-                    {idCategoria !== undefined &&
-                        <h2> <span style={{ color: 'darkgray' }}> Categoria &nbsp;<Icon name='angle double right' size="small" /> </span> Alteração</h2>
+                    {idCategoriaProduto !== undefined &&
+                        <h2> <span style={{ color: 'darkgray' }}> Categoria de Produto &nbsp;<Icon name='angle double right' size="small" /> </span> Alteração</h2>
                     }
-
 
                     <Divider />
 
@@ -76,24 +68,16 @@ export default function FormCategoriaProduto() {
                                 <Form.Input
                                     required
                                     fluid
-                                    label='Categoria de Produto'
+                                    label='Descrição'
                                     maxLength="100"
-                                >
-                                    <InputMask
-                                        placeholder="Informe a Categoria do Produto"
-                                        value={categoria}
-                                        onChange={e => setCategoria(e.target.value)}
-
-                                    />
-                                </Form.Input>
+                                    value={descricaoCategoria}
+                                    onChange={e => setDescricaoCategoria(e.target.value)}
+                                />
 
                             </Form.Group>
-
-
                         </Form>
-
                         <div style={{ marginTop: '4%' }}>
-                            <Link to={'/list-produto'} >
+
                             <Button
                                 type="button"
                                 inverted
@@ -103,9 +87,8 @@ export default function FormCategoriaProduto() {
                                 color='orange'
                             >
                                 <Icon name='reply' />
-                                Voltar
+                                <Link to={'/list-categoriaproduto'}>Voltar</Link>
                             </Button>
-                            </Link>
 
                             <Button
                                 inverted

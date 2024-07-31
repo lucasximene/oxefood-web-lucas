@@ -26,11 +26,11 @@ export default function FormProduto() {
                 })
         }
         axios.get(ENDERECO_API + "api/categoriaproduto")
-        .then((response) => {
-            const dropDownCategorias = response.data.map(c => ({ text: c.descricao, value: c.id }));
-            setListaCategoria(dropDownCategorias);
-        })
- 
+            .then((response) => {
+                const dropDownCategorias = response.data.map(c => ({ text: c.descricao, value: c.id }));
+                setListaCategoria(dropDownCategorias);
+            })
+
     }, [state])
 
 
@@ -43,7 +43,7 @@ export default function FormProduto() {
     const [tempoEntregaMaximo, setTempoEntregaMaximo] = useState();
     const [listaCategoria, setListaCategoria] = useState([]);
     const [idCategoria, setIdCategoria] = useState();
- 
+
 
     function salvar() {
 
@@ -134,8 +134,8 @@ export default function FormProduto() {
                                     label='Categoria'
                                     options={listaCategoria}
                                     value={idCategoria}
-                                    onChange={(e,{value}) => {
-                                    setIdCategoria(value)
+                                    onChange={(e, { value }) => {
+                                        setIdCategoria(value)
                                     }}
                                 />
 
@@ -192,17 +192,17 @@ export default function FormProduto() {
 
                         <div style={{ marginTop: '4%' }}>
                             <Link to={'/list-produto'} >
-                            <Button
-                                type="button"
-                                inverted
-                                circular
-                                icon
-                                labelPosition='left'
-                                color='orange'
-                            >
-                                <Icon name='reply' />
-                                Voltar
-                            </Button>
+                                <Button
+                                    type="button"
+                                    inverted
+                                    circular
+                                    icon
+                                    labelPosition='left'
+                                    color='orange'
+                                >
+                                    <Icon name='reply' />
+                                    Voltar
+                                </Button>
                             </Link>
 
                             <Button
