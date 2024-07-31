@@ -18,7 +18,7 @@ export default function FormCategoriaProduto() {
         }
         axios.get(ENDERECO_API + "api/categoriaproduto")
         .then((response) => {
-            const dropDownCategorias = response.data.map(c => ({ text: c.descricao, value: c.id }));
+            const dropDownCategorias = response.data.map(c => ({ text: categoria.descricao, value: categoria.id }));
             setListaCategoria(dropDownCategorias);
         })
  
@@ -81,8 +81,8 @@ export default function FormCategoriaProduto() {
                                 >
                                     <InputMask
                                         placeholder="Informe a Categoria do Produto"
-                                        value={titulo}
-                                        onChange={e => setTitulo(e.target.value)}
+                                        value={categoria}
+                                        onChange={e => setCategoria(e.target.value)}
 
                                     />
                                 </Form.Input>
