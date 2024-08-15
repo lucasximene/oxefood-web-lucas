@@ -22,7 +22,7 @@ export default function FormCliente() {
   useEffect(() => {
     if (state != null && state.id != null) {
       axios
-        .get("http://localhost:8080/api/cliente/" + state.id)
+        .get("http://localhost:8082/api/cliente/" + state.id)
         .then((response) => {
           setIdCliente(response.data.id);
           setNome(response.data.nome);
@@ -56,7 +56,7 @@ export default function FormCliente() {
     if (idCliente != null) {
       //Alteração:
       axios
-        .put("http://localhost:8080/api/cliente/" + idCliente, clienteRequest)
+        .put("http://localhost:8082/api/cliente/" + idCliente, clienteRequest)
         .then((response) => {
           notifySuccess("Cliente alterado com sucesso.");
           resetForm();
@@ -71,7 +71,7 @@ export default function FormCliente() {
     } else {
       //Cadastro:
       axios
-        .post("http://localhost:8080/api/cliente", clienteRequest)
+        .post("http://localhost:8082/api/cliente", clienteRequest)
         .then((response) => {
           let clienteID = response.data.id;
           enviarEnderecos(clienteID);
@@ -103,7 +103,7 @@ export default function FormCliente() {
     endereco.forEach(async (endereco) => {
       await axios
         .post(
-          "http://localhost:8080/api/cliente/endereco/" + clienteID,
+          "http://localhost:8082/api/cliente/endereco/" + clienteID,
           endereco
         )
         .then(() => console.log("Endereço cadastrado com sucesso."))

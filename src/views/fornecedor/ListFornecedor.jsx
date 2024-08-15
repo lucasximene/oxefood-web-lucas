@@ -39,7 +39,7 @@ export default function ListFornecedor () {
     
     async function remover() {
 
-        await axios.delete('http://localhost:8080/api/fornecedor/' + idRemover)
+        await axios.delete('http://localhost:8082/api/fornecedor/' + idRemover)
         .then((response) => {
   
             console.log('Fornecedor removido com sucesso.')

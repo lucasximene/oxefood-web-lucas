@@ -19,7 +19,7 @@ export default function FormFornecedor(){
   useEffect(() => {
     if (state != null && state.id != null) {
       axios
-        .get("http://localhost:8080/api/fornecedor/" + state.id)
+        .get("http://localhost:8082/api/fornecedor/" + state.id)
         .then((response) => {
             setIdFornecedor(response.data.id)
           setNome(response.data.nome)

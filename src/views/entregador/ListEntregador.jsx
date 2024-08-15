@@ -48,12 +48,12 @@ export default function ListEntregador () {
      
      async function remover() {
  
-         await axios.delete('http://localhost:8080/api/entregador/' + idRemover)
+         await axios.delete('http://localhost:8082/api/entregador/' + idRemover)
          .then((response) => {
    
              console.log('Entregador removido com sucesso.')
    
-             axios.get("http://localhost:8080/api/entregador")
+             axios.get("http://localhost:8082/api/entregador")
              .then((response) => {
                  setLista(response.data)
              })

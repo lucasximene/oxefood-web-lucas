@@ -19,7 +19,7 @@ export default function FormFabricante() {
     useEffect(() => {
       if (state != null && state.id != null) {
         axios
-          .get("http://localhost:8080/api/fabricante/" + state.id)
+          .get("http://localhost:8082/api/fabricante/" + state.id)
           .then((response) => {
             setIdFabricante(response.data.id)
             setNome(response.data.nome)
@@ -54,7 +54,7 @@ export default function FormFabricante() {
       if (idFabricante != null) {
         //Alteração:
         axios
-          .put("http://localhost:8080/api/fabricante/" + idFabricante, fabricanteRequest)
+          .put("http://localhost:8082/api/fabricante/" + idFabricante, fabricanteRequest)
           .then((response) => {
             notifySuccess("Fabricante alterado com sucesso.")
           })
@@ -68,7 +68,7 @@ export default function FormFabricante() {
       } else {
         //Cadastro:
         axios
-          .post("http://localhost:8080/api/fabricante", fabricanteRequest)
+          .post("http://localhost:8082/api/fabricante", fabricanteRequest)
           .then((response) => {
             notifySuccess("Fabricante cadastrado com sucesso.")
           })

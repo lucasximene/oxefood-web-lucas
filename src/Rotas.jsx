@@ -12,8 +12,8 @@ import FormFornecedor from './views/fornecedor/FormFornecedor';
 import ListFornecedor from './views/fornecedor/ListFornecedor';
 import FormProduto from './views/produto/FormProduto';
 import ListProduto from './views/produto/ListProduto';
-import FormCategoriaProduto from './views/produto/FormCategoriaProduto';
-import ListCategoriaProduto from './views/produto/ListCategoriaProduto';
+import FormCategoriaProduto from './views/categoriaproduto/FormCategoriaProduto';
+import ListCategoriaProduto from './views/categoriaproduto/ListCategoriaProduto';
 
 function Rotas() {
     return (

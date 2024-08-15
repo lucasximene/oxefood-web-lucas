@@ -39,12 +39,12 @@ export default function ListCliente () {
     
     async function remover() {
 
-        await axios.delete('http://localhost:8080/api/cliente/' + idRemover)
+        await axios.delete('http://localhost:8082/api/cliente/' + idRemover)
         .then((response) => {
   
             console.log('Cliente removido com sucesso.')
   
-            axios.get("http://localhost:8080/api/cliente")
+            axios.get("http://localhost:8082/api/cliente")
             .then((response) => {
                 setLista(response.data)
             })
