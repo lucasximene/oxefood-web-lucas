@@ -21,7 +21,7 @@ export default function FormLogin () {
                 password: senha,
             }
     
-            axios.post("http://localhost:8080/api/login", authenticationRequest)
+            axios.post("http://localhost:8082/api/auth", authenticationRequest)
             .then((response) => {
 
                 registerSuccessfulLoginForJwt(response.data.token, response.data.expiration)
